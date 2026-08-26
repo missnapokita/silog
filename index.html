@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d0e11" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="description" content="Generate a protected one-time voucher for Bisaya Toolkit VIP items." />
+    <title>Bisaya Toolkit Voucher</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="voucher-page">
+      <div class="ambient ambient-one" aria-hidden="true"></div>
+      <div class="ambient ambient-two" aria-hidden="true"></div>
+
+      <section class="voucher-shell" aria-labelledby="page-title">
+        <header class="brand-row">
+          <div class="brand-mark" aria-hidden="true">BT</div>
+          <div>
+            <p class="brand-name">BISAYA <span>TOOLKIT</span></p>
+            <p class="brand-subtitle">MOBA COMPANION</p>
+          </div>
+          <span class="secure-pill"><span class="secure-dot"></span> Secure</span>
+        </header>
+
+        <div class="progress-track" aria-label="Voucher progress">
+          <span class="progress-line" aria-hidden="true"></span>
+          <div class="progress-step active" data-step="access"><span>1</span><small>Access</small></div>
+          <div class="progress-step" data-step="generate"><span>2</span><small>Generate</small></div>
+          <div class="progress-step" data-step="redeem"><span>3</span><small>Redeem</small></div>
+        </div>
+
+        <article class="voucher-card">
+          <div class="ticket-topline">
+            <span class="eyebrow">VIP VOUCHER</span>
+            <span class="status-label" id="status-label">CHECKING ACCESS</span>
+          </div>
+
+          <div class="lock-orbit" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M7 10V8a5 5 0 0 1 10 0v2"></path>
+              <rect x="5" y="10" width="14" height="10" rx="3"></rect>
+              <path d="M12 14v2"></path>
+            </svg>
+          </div>
+
+          <h1 id="page-title">Unlock your VIP item</h1>
+          <p class="lead" id="lead-copy">Checking your secure voucher access…</p>
+
+          <div class="item-row">
+            <div class="item-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 12 12 20 4 12l8-8 8 8Z"></path>
+                <path d="m8.5 12 2.1 2.1 4.9-4.9"></path>
+              </svg>
+            </div>
+            <div>
+              <span>SELECTED VIP ITEM</span>
+              <strong id="item-name">Waiting for Bisaya Toolkit</strong>
+            </div>
+          </div>
+
+          <div class="voucher-code-wrap" id="voucher-code-wrap" hidden>
+            <span>YOUR ONE-TIME CODE</span>
+            <output id="voucher-code" aria-live="polite">••••-••••-••••</output>
+          </div>
+
+          <button class="primary-button" id="primary-button" type="button" disabled>PLEASE WAIT</button>
+          <button class="text-button" id="retry-button" type="button" hidden>Try again</button>
+          <p class="setup-note" id="setup-note" aria-live="polite"></p>
+
+          <div class="trust-grid">
+            <div><strong>01</strong><span>One device</span></div>
+            <div><strong>1×</strong><span>One-time use</span></div>
+            <div><strong id="expiry-value">15m</strong><span>Short expiry</span></div>
+          </div>
+        </article>
+
+        <footer><span class="footer-shield" aria-hidden="true">✓</span>Never share your voucher code with anyone.</footer>
+      </section>
+    </main>
+    <noscript>This voucher page needs JavaScript to verify and generate a code.</noscript>
+  </body>
+</html>
