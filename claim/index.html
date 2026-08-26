@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d0e11" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <title>Opening Bisaya Toolkit Voucher…</title>
+    <style>
+      :root{color-scheme:dark}*{box-sizing:border-box}body{display:grid;min-height:100svh;margin:0;place-items:center;background:#0d0e11;color:#e9efe9;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}.loader{display:grid;justify-items:center;gap:14px}.ring{width:42px;height:42px;border:3px solid #273027;border-top-color:#7ccb69;border-radius:50%;animation:spin .75s linear infinite}.loader p{margin:0;color:#8e998f;font-size:12px}@keyframes spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.ring{animation-duration:1.8s}}
+    </style>
+  </head>
+  <body>
+    <div class="loader" role="status"><span class="ring" aria-hidden="true"></span><p>Preparing your secure voucher…</p></div>
+    <script>
+      (function () {
+        "use strict";
+
+        var message = document.querySelector(".loader p");
+        var attempts = 0;
+
+        function finishGate() {
+          attempts += 1;
+
+          fetch("../api/gate/complete", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: "{}",
+            cache: "no-store",
+            credentials: "include"
+          }).then(function (response) {
+            return response.json().catch(function () { return {}; }).then(function (data) {
+              if (response.status === 425 && attempts < 3) {
+                var waitMs = Math.max(1000, Number(data.retryAfterSeconds || 2) * 1000);
+                window.setTimeout(finishGate, waitMs);
+                return null;
+              }
+              if (!response.ok) throw new Error(data.message || "Access could not be verified");
+              return data;
+            });
+          }).then(function (data) {
+            if (!data) return;
+            if (!data.entryToken) throw new Error("Missing access token");
+            window.location.replace("../?entry=" + encodeURIComponent(data.entryToken));
+          }).catch(function () {
+            message.textContent = "Access expired. Return to Bisaya Toolkit and tap Get Now again.";
+            document.querySelector(".ring").style.display = "none";
+          });
+        }
+
+        finishGate();
+      })();
+    </script>
+  </body>
+</html>
