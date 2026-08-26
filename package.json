@@ -1,0 +1,11 @@
+{
+  "name": "bisaya-toolkit-voucher",
+  "version": "1.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "check": "node --check app.js && node --check config.js && node --check server/lib/core.js && node --test tests/*.test.js"
+  }
+}
